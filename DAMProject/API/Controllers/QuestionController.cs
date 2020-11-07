@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Models.Question;
 using Services.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -27,6 +28,33 @@ namespace API.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _questionsService.GetAllAsync();
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok(result.Value);
+        }
+
+        [HttpGet]
+        [Route("{id?}")]
+        public async Task<IActionResult> GetByID(Guid? id)
+        {
+            var result = await _questionsService.GetByIdAsync((Guid)id);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok(result.Value);
         }
     }
 }

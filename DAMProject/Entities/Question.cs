@@ -15,8 +15,7 @@ namespace Entities
         public string Option4 { get; set; }
         public string Option5 { get; set; }
         public Helper.CorrectAnswer CorrectAnswer{ get; set;}
-        public string TextAnswer { get; set; }
-        public bool Cancelled { get; set; }
+        public bool Cancelled { get; set; } = false; 
 
     }
 }
