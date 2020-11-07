@@ -1,0 +1,15 @@
+E:\MASTER\ANUL I\DAM\DAMProject\Database\bin\Debug\netcoreapp3.1\Database.deps.json
+E:\MASTER\ANUL I\DAM\DAMProject\Database\bin\Debug\netcoreapp3.1\Database.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.AssemblyInfoInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.AssemblyInfo.cs
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.csprojAssemblyReference.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Database\bin\Debug\netcoreapp3.1\Database.runtimeconfig.json
+E:\MASTER\ANUL I\DAM\DAMProject\Database\bin\Debug\netcoreapp3.1\Database.runtimeconfig.dev.json
+E:\MASTER\ANUL I\DAM\DAMProject\Database\bin\Debug\netcoreapp3.1\Database.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Database\bin\Debug\netcoreapp3.1\Entities.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Database\bin\Debug\netcoreapp3.1\Entities.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.csproj.CoreCompileInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.csproj.CopyComplete
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Database\obj\Debug\netcoreapp3.1\Database.genruntimeconfig.cache

@@ -1,0 +1,14 @@
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.deps.json
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csprojAssemblyReference.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfoInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.AssemblyInfo.cs
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\bin\Debug\netcoreapp3.1\Infrastructure.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\bin\Debug\netcoreapp3.1\Entities.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\bin\Debug\netcoreapp3.1\Models.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\bin\Debug\netcoreapp3.1\Entities.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\bin\Debug\netcoreapp3.1\Models.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CoreCompileInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.csproj.CopyComplete
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Infrastructure\obj\Debug\netcoreapp3.1\Infrastructure.pdb

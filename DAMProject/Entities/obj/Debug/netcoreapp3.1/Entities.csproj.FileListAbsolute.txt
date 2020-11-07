@@ -1,0 +1,12 @@
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\bin\Debug\netcoreapp3.1\Entities.deps.json
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\bin\Debug\netcoreapp3.1\Entities.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\bin\Debug\netcoreapp3.1\Entities.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\obj\Debug\netcoreapp3.1\Entities.csprojAssemblyReference.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfoInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\obj\Debug\netcoreapp3.1\Entities.AssemblyInfo.cs
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\obj\Debug\netcoreapp3.1\Entities.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\obj\Debug\netcoreapp3.1\Entities.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\bin\Debug\netcoreapp3.1\Entities.runtimeconfig.json
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\bin\Debug\netcoreapp3.1\Entities.runtimeconfig.dev.json
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\obj\Debug\netcoreapp3.1\Entities.csproj.CoreCompileInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Entities\obj\Debug\netcoreapp3.1\Entities.genruntimeconfig.cache

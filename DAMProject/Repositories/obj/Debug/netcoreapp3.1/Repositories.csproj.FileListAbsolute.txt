@@ -1,0 +1,14 @@
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\bin\Debug\netcoreapp3.1\Repositories.deps.json
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\bin\Debug\netcoreapp3.1\Repositories.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\bin\Debug\netcoreapp3.1\Repositories.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\obj\Debug\netcoreapp3.1\Repositories.csprojAssemblyReference.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\obj\Debug\netcoreapp3.1\Repositories.AssemblyInfoInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\obj\Debug\netcoreapp3.1\Repositories.AssemblyInfo.cs
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\obj\Debug\netcoreapp3.1\Repositories.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\obj\Debug\netcoreapp3.1\Repositories.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\bin\Debug\netcoreapp3.1\Database.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\bin\Debug\netcoreapp3.1\Entities.dll
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\bin\Debug\netcoreapp3.1\Database.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\bin\Debug\netcoreapp3.1\Entities.pdb
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\obj\Debug\netcoreapp3.1\Repositories.csproj.CoreCompileInputs.cache
+E:\MASTER\ANUL I\DAM\DAMProject\Repositories\obj\Debug\netcoreapp3.1\Repositories.csproj.CopyComplete
