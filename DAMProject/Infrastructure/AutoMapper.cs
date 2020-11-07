@@ -13,6 +13,7 @@ namespace DAMInfrastructure
                 config.CreateMap<AddPersonDTO, Person>();
                 config.CreateMap<Person, PersonDTO>();
                 config.CreateMap<AddQuestionDTO, Question>();
+                config.CreateMap<Question, QuestionDTO>();
             });
 
             return configuration;

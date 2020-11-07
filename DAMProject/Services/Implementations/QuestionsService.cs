@@ -4,6 +4,8 @@ using Entities;
 using Models.Question;
 using Repositories.Interfaces;
 using Services.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 namespace Services.Implementations
 {
@@ -22,6 +24,17 @@ namespace Services.Implementations
         {
             var model = _mapper.Map<Question>(addQuestionDTO);
             return _questionRepository.AddAsync(model);
+        }
+
+        public Task<Result<IEnumerable<QuestionDTO>>> GetAllAsync()
+        {
+            return _questionRepository.GetAllAsync().Map(list => _mapper.Map<IEnumerable<QuestionDTO>>(list));
+        }
+
+        public Task<Result<QuestionDTO>> GetByIdAsync(Guid id)
+        {
+
+            return _questionRepository.GetByIdAsync(id).Map(item => _mapper.Map<QuestionDTO>(item));
         }
     }
 }

@@ -15,7 +15,5 @@ namespace Models.Question
         public string Option4 { get; set; }
         public string Option5 { get; set; }
         public QuestionHelper.CorrectAnswer CorrectAnswer { get; set; }
-        public string TextAnswer { get; set; }
-        public bool Cancelled { get; set; }
     }
 }
