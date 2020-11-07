@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
 using Entities;
-using Models;
+using Models.Person;
 using Repositories.Interfaces;
 using Services.Interfaces;
 using System.Threading.Tasks;

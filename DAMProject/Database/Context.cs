@@ -6,7 +6,7 @@ namespace Database
     public class Context: DbContext
     {
         public DbSet<Person> Persons { get; set; }
-
+        public DbSet<Question> Questions { get; set; }
         public Context(DbContextOptions<Context> options) : base(options)
         {
             Database.EnsureCreated();

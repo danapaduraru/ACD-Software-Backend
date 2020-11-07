@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Entities;
-using Models;
-
+using Models.Person;
+using Models.Question;
 namespace DAMInfrastructure
 {
     public static class AutoMapper
@@ -11,6 +11,7 @@ namespace DAMInfrastructure
             var configuration = new MapperConfiguration(config =>
             {
                 config.CreateMap<AddPersonDTO, Person>();
+                config.CreateMap<AddQuestionDTO, Question>();
             });
 
             return configuration;

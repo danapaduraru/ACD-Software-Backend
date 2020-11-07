@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Models;
+using Models.Person;
 using Services.Interfaces;
 using System.Threading.Tasks;
 

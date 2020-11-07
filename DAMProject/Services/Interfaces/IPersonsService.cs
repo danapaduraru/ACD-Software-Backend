@@ -1,5 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
-using Models;
+using Models.Person;
 using System.Threading.Tasks;
 
 namespace Services.Interfaces

@@ -28,13 +28,16 @@ namespace API
 
             services.AddDbContext<Context>(options =>
             {
-                options.UseSqlServer(@"Data Source=DESKTOP-1PE5EKU\SQLEXPRESS;Initial Catalog=DAMProject; Trusted_Connection=True;");
+                options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DAM; Trusted_Connection=True;");
             });
 
             services.AddSingleton(DAMInfrastructure.AutoMapper.Configure().CreateMapper());
 
             services.AddScoped<IPersonsService, PersonsService>();
             services.AddScoped<IPersonsRepository, PersonsRepository>();
+
+            services.AddScoped<IQuestionsService, QuestionsService>();
+            services.AddScoped<IQuestionsRepository, QuestionsRepository>();
 
             services.AddSwaggerGen();
         }
