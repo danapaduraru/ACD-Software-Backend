@@ -4,6 +4,8 @@ using Entities;
 using Models.Person;
 using Repositories.Interfaces;
 using Services.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Services.Implementations
@@ -19,10 +21,32 @@ namespace Services.Implementations
             _mapper = mapper;
         }
 
+        public Task<Result<IEnumerable<PersonDTO>>> GetAllAsync()
+        {
+            return _personsRepository.GetAllAsync()
+                .Map(list => _mapper.Map<IEnumerable<PersonDTO>>(list));
+        }
+        public Task<Result<PersonDTO>> GetByIdAsync(Guid id)
+        {
+            return _personsRepository.GetByIdAsync(id)
+                .Map(item => _mapper.Map<PersonDTO>(item));
+        }
+
         public Task<Result> AddAsync(AddPersonDTO addPersonDTO)
         {
             var model = _mapper.Map<Person>(addPersonDTO);
             return _personsRepository.AddAsync(model);
+        }
+
+        public Task<Result> DeleteAsync(Guid id)
+        {
+            return _personsRepository.DeleteAsync(id);
+        }
+
+        public Task<Result> UpdateAsync(Guid id, AddPersonDTO person)
+        {
+            var entity = _mapper.Map<Person>(person);
+            return _personsRepository.UpdateAsync(id, entity);
         }
     }
 }

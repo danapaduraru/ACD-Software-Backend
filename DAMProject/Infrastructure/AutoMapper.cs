@@ -11,6 +11,7 @@ namespace DAMInfrastructure
             var configuration = new MapperConfiguration(config =>
             {
                 config.CreateMap<AddPersonDTO, Person>();
+                config.CreateMap<Person, PersonDTO>();
                 config.CreateMap<AddQuestionDTO, Question>();
             });
 
