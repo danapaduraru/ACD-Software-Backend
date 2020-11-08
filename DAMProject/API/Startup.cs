@@ -40,6 +40,9 @@ namespace API
             services.AddScoped<IQuestionsService, QuestionsService>();
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();
 
+            services.AddScoped<ITestsService, TestsService>();
+            services.AddScoped<ITestsRepository, TestsRepository>();
+
             services.AddSwaggerGen();
         }
 

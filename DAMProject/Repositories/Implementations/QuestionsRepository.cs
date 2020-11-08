@@ -59,5 +59,19 @@ namespace Repositories.Implementations
                 return Result.Failure<Question>("Exception: " + e.Message);
             }
         }
+
+        public async Task<Result<IQueryable<Question>>> GetQuestionsFromTestAsync(Guid testId)
+        {
+            try
+            {
+                var result = await _context.TestToQuestions.Where(ttq => ttq.TestId == testId).Select(ttq => ttq.Question).ToListAsync().ConfigureAwait(true);
+
+                return Result.Success(result.AsQueryable());
+            }
+            catch (Exception e)
+            {
+                return Result.Failure<IQueryable<Question>>("Exception: " + e.Message);
+            }
+        }
     }
 }

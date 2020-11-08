@@ -4,14 +4,16 @@ using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Database.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201108162702_TestAdded")]
+    partial class TestAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +83,12 @@ namespace Database.Migrations
                     b.Property<int>("QuestionType")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("TestId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("QuestionId");
+
+                    b.HasIndex("TestId");
 
                     b.ToTable("Questions");
                 });
@@ -109,40 +116,11 @@ namespace Database.Migrations
                     b.ToTable("Tests");
                 });
 
-            modelBuilder.Entity("Entities.TestToQuestions", b =>
+            modelBuilder.Entity("Entities.Question", b =>
                 {
-                    b.Property<Guid>("TestToQuestionsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("QuestionID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TestId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("TestToQuestionsId");
-
-                    b.HasIndex("QuestionID");
-
-                    b.HasIndex("TestId");
-
-                    b.ToTable("TestToQuestions");
-                });
-
-            modelBuilder.Entity("Entities.TestToQuestions", b =>
-                {
-                    b.HasOne("Entities.Question", "Question")
-                        .WithMany("TestToQuestions")
-                        .HasForeignKey("QuestionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Test", "Test")
-                        .WithMany("TestToQuestions")
-                        .HasForeignKey("TestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Entities.Test", null)
+                        .WithMany("QuestionList")
+                        .HasForeignKey("TestId");
                 });
 #pragma warning restore 612, 618
         }

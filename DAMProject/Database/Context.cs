@@ -5,8 +5,10 @@ namespace Database
 {
     public class Context: DbContext
     {
+        public DbSet<TestToQuestions> TestToQuestions { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Test> Tests { get; set; }
         public Context(DbContextOptions<Context> options) : base(options)
         {
             Database.EnsureCreated();

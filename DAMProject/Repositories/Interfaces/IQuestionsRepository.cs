@@ -11,5 +11,6 @@ namespace Repositories.Interfaces
         Task<Result> AddAsync(Question question);
         Task<Result<IQueryable<Question>>> GetAllAsync();
         Task<Result<Question>> GetByIdAsync(Guid id);
+        Task<Result<IQueryable<Question>>> GetQuestionsFromTestAsync(Guid testId);
     }
 }

@@ -36,5 +36,10 @@ namespace Services.Implementations
 
             return _questionRepository.GetByIdAsync(id).Map(item => _mapper.Map<QuestionDTO>(item));
         }
+
+        public Task<Result<IEnumerable<QuestionDTO>>> GetQuestionsFromTestAsync(Guid testId)
+        {
+            return _questionRepository.GetQuestionsFromTestAsync(testId).Map(list => _mapper.Map<IEnumerable<QuestionDTO>>(list));
+        }
     }
 }

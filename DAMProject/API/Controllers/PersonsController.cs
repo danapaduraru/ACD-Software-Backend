@@ -43,10 +43,10 @@ namespace API.Controllers
             return Ok(result.Value);
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(Guid id)
+        [HttpGet("{id?}")]
+        public async Task<IActionResult> GetById(Guid? id)
         {
-            var result = await _personsService.GetByIdAsync(id);
+            var result = await _personsService.GetByIdAsync((Guid)id);
 
             if (result.IsFailure)
             {
@@ -56,10 +56,10 @@ namespace API.Controllers
             return Ok(result.Value);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        [HttpDelete("{id?}")]
+        public async Task<IActionResult> Delete(Guid? id)
         {
-            var result = await _personsService.DeleteAsync(id);
+            var result = await _personsService.DeleteAsync((Guid)id);
 
             if (result.IsFailure)
             {
@@ -69,10 +69,10 @@ namespace API.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid id, [FromBody]AddPersonDTO person)
+        [HttpPut("{id?}")]
+        public async Task<IActionResult> Update(Guid? id, [FromBody]AddPersonDTO person)
         {
-            var result = await _personsService.UpdateAsync(id, person);
+            var result = await _personsService.UpdateAsync((Guid)id, person);
 
             if (result.IsFailure)
             {

@@ -11,6 +11,6 @@ namespace Services.Interfaces
         Task<Result> AddAsync(AddQuestionDTO questionDTO);      
         Task<Result<IEnumerable<QuestionDTO>>> GetAllAsync();
         Task<Result<QuestionDTO>> GetByIdAsync(Guid id);
-
+        Task<Result<IEnumerable<QuestionDTO>>> GetQuestionsFromTestAsync(Guid testId);
     }
 }
