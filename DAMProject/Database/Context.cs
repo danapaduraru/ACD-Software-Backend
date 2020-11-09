@@ -5,10 +5,18 @@ namespace Database
 {
     public class Context: DbContext
     {
+        //Relations
         public DbSet<TestToQuestions> TestToQuestions { get; set; }
+
+        //Main entities
         public DbSet<Person> Persons { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Test> Tests { get; set; }
+        public DbSet<JobPosition> JobPositions { get; set; }
+
+
+
+
         public Context(DbContextOptions<Context> options) : base(options)
         {
             Database.EnsureCreated();

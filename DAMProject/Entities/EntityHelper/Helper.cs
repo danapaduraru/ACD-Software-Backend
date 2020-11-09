@@ -21,5 +21,13 @@ namespace Entities
             Four = 4,
             Five = 5
         }
+
+        public enum PositionStatus
+        {
+            Open = 1,
+            Soon = 2,
+            Close = 3,
+            Cancelled = 4
+        }
     }
 }

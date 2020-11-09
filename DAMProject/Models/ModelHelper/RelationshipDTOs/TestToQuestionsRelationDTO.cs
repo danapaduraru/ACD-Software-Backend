@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Models.ModelHelpers
+namespace Models.ModelHelper
 {
     public class TestToQuestionsRelationDTO
     {

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Entities;
-using Models.ModelHelpers;
+using Models.ModelHelper;
 using Models.Person;
 using Models.Question;
 using Models.Test;
+using Models.JobPosition;
+
 namespace DAMInfrastructure
 {
     public static class AutoMapper
@@ -20,6 +22,9 @@ namespace DAMInfrastructure
 
                 config.CreateMap<AddTestDTO, Test>();
                 config.CreateMap<Test, TestDTO>();
+
+                config.CreateMap<AddJobPositionDTO, JobPosition>();
+                config.CreateMap<JobPosition, JobPositionDTO>();
 
                 config.CreateMap<TestToQuestionsRelationDTO, TestToQuestions>();
             });

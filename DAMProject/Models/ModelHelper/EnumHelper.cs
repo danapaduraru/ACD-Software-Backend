@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Models.ModelHelpers
+namespace Models.ModelHelper
 {
-    public static class QuestionHelper
+    public static class EnumHelper
     {
         public enum QuestionType
         {
@@ -20,6 +20,14 @@ namespace Models.ModelHelpers
             Three = 3,
             Four = 4,
             Five = 5
+        }
+
+        public enum PositionStatus
+        {
+            Open = 1,
+            Soon = 2,
+            Close = 3,
+            Cancelled = 4
         }
     }
 }

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using Models.ModelHelpers;
+using Models.ModelHelper;
 
 namespace Services.Interfaces
 {

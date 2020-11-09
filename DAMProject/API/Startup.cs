@@ -43,6 +43,9 @@ namespace API
             services.AddScoped<ITestsService, TestsService>();
             services.AddScoped<ITestsRepository, TestsRepository>();
 
+            services.AddScoped<IJobPositionsService, JobPositionsService>();
+            services.AddScoped<IJobPositionsRepository, JobPositionsRepository>();
+
             services.AddSwaggerGen();
         }
 

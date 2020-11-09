@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
 using Entities;
-using Models.Question;
 using Models.Test;
-using Models.ModelHelpers;
+using Models.ModelHelper;
 using Repositories.Interfaces;
 using Services.Interfaces;
 using System;
