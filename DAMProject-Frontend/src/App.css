@@ -1,0 +1,45 @@
+/**************************
+COLORS
+ 
+#001529
+header-blue: #001529;
+dark-blue: #1d2834
+medium-blue: #232f3e
+gray: #eaedf2
+dark-accent-blue: #0073A8;
+**************************/
+
+/**************************
+HEADER
+**************************/
+
+.ant-menu-item span, .ant-menu-item .ant-icon{
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+}
+  
+.ant-menu-item-selected {
+    background-color: none;
+}
+  
+.ant-layout-header {
+    height: 65px;
+}
+
+.my-logo {
+    color: white;
+    float: left;
+    font-size: 160%;
+    font-weight: 500;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+.ant-menu-dark .ant-menu-item > span > a {
+    color: white;
+}
+
+h1 {
+    color: white;
+}

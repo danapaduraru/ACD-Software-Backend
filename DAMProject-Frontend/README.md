@@ -1,0 +1,1 @@
+React front-end side of ACD Software Jobs platform, an interview platform for a fictive company created for the Object-Oriented Analysis and Design project at Master's Degree of Software Development and Business Information Systems, UAIC.
