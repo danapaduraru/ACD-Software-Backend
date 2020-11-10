@@ -2,8 +2,9 @@ import { React } from 'react';
 import styled from 'styled-components'
 
 import Header from '../common/Header';
+import JobPositionSearch from './JobPositionsSearch';
 
-const JobPositionsList = () => {
+const Home = () => {
 
     const jobPositionsList = [
         {
@@ -25,6 +26,7 @@ const JobPositionsList = () => {
     return (
         <>
             <Header />
+            <JobPositionSearch />
             <GrayBackground>
                 {
                     jobPositionsList.map((jobPosition) => 
@@ -73,4 +75,4 @@ const JobPositionContainer = styled.div`
         color: #0073A8;
     }
 `
-export default JobPositionsList;
+export default Home;
