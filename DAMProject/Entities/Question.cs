@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Entities
 {
@@ -16,7 +15,6 @@ namespace Entities
         public string Option5 { get; set; }
         public Helper.CorrectAnswer CorrectAnswer{ get; set;}
         public bool Cancelled { get; set; } = false; 
-
         public ICollection<TestToQuestions> TestToQuestions { get; set; }
     }
 }

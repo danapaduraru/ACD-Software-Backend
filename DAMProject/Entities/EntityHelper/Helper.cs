@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entities
+﻿namespace Entities
 {
     public static class Helper
     {
@@ -28,6 +24,12 @@ namespace Entities
             Soon = 2,
             Close = 3,
             Cancelled = 4
+        }
+
+        public enum PersonType
+        {
+            Applicant = 1,
+            Employee = 2
         }
     }
 }

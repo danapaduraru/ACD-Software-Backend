@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Models.ModelHelper
+﻿namespace Models.ModelHelper
 {
     public static class EnumHelper
     {
@@ -28,6 +24,12 @@ namespace Models.ModelHelper
             Soon = 2,
             Close = 3,
             Cancelled = 4
+        }
+
+        public enum PersonType
+        {
+            Applicant = 1,
+            Employee = 2
         }
     }
 }
