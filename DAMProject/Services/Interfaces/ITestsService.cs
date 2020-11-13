@@ -1,10 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
 using Models.Test;
-using Models.Question;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using Models.ModelHelper;
 
 namespace Services.Interfaces
@@ -14,7 +12,7 @@ namespace Services.Interfaces
         Task<Result> AddAsync(AddTestDTO test);
         Task<Result<IEnumerable<TestDTO>>> GetAllAsync();
         Task<Result<TestDTO>> GetByIdAsync(Guid id);
-        Task<Result> AddQuestionToTestAsync(TestToQuestionsRelationDTO TQRelDTO);
+        Task<Result> AddQuestionToTestAsync(TestsToQuestionsRelationDTO TQRelDTO);
         
     }
 }

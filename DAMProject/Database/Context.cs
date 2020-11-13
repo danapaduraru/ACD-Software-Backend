@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.EntityHelper.RelationshipEntities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Database
@@ -6,14 +7,15 @@ namespace Database
     public class Context: DbContext
     {
         //Relations
-        public DbSet<TestToQuestions> TestToQuestions { get; set; }
+        public DbSet<TestsToQuestions> TestsToQuestions { get; set; }
+        public DbSet<TestsToInterviews> TestsToInterviews { get; set; }
 
         //Main entities
         public DbSet<Person> Persons { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
-
+        public DbSet<Interview> Interviews { get; set; }
 
 
         public Context(DbContextOptions<Context> options) : base(options)
@@ -29,6 +31,7 @@ namespace Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             //new branch
             //test pull request
             //modified

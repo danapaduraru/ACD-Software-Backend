@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities
 {
@@ -14,5 +15,8 @@ namespace Entities
         public Helper.PersonType PersonType { get; set; }
         public string Position { get; set; }
         public string LinkCV { get; set; }
+
+
+        public ICollection<Interview> Interviews { get; set; }
     }
 }

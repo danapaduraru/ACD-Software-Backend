@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.EntityHelper.RelationshipEntities;
+using System;
 using System.Collections.Generic;
 
 namespace Entities
@@ -15,6 +16,6 @@ namespace Entities
         public string Option5 { get; set; }
         public Helper.CorrectAnswer CorrectAnswer{ get; set;}
         public bool Cancelled { get; set; } = false; 
-        public ICollection<TestToQuestions> TestToQuestions { get; set; }
+        public ICollection<TestsToQuestions> TestToQuestions { get; set; }
     }
 }

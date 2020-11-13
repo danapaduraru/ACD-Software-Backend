@@ -8,6 +8,7 @@ using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Entities.EntityHelper.RelationshipEntities;
 
 namespace Services.Implementations
 {
@@ -28,9 +29,9 @@ namespace Services.Implementations
             return _testRepository.AddAsync(model);
         }
 
-        public Task<Result> AddQuestionToTestAsync(TestToQuestionsRelationDTO TQRelDTO)
+        public Task<Result> AddQuestionToTestAsync(TestsToQuestionsRelationDTO TQRelDTO)
         {
-            var modelTest = _mapper.Map<TestToQuestions>(TQRelDTO);
+            var modelTest = _mapper.Map<TestsToQuestions>(TQRelDTO);
             return _testRepository.AddQuestionToTestAsync(modelTest);
         }
 

@@ -64,7 +64,7 @@ namespace Repositories.Implementations
         {
             try
             {
-                var result = await _context.TestToQuestions.Where(ttq => ttq.TestId == testId).Select(ttq => ttq.Question).ToListAsync().ConfigureAwait(true);
+                var result = await _context.TestsToQuestions.Where(ttq => ttq.TestId == testId).Select(ttq => ttq.Question).ToListAsync().ConfigureAwait(true);
 
                 return Result.Success(result.AsQueryable());
             }

@@ -5,6 +5,8 @@ using Models.Person;
 using Models.Question;
 using Models.Test;
 using Models.JobPosition;
+using Entities.EntityHelper.RelationshipEntities;
+using Models.Interview;
 
 namespace DAMInfrastructure
 {
@@ -26,7 +28,9 @@ namespace DAMInfrastructure
                 config.CreateMap<AddJobPositionDTO, JobPosition>();
                 config.CreateMap<JobPosition, JobPositionDTO>();
 
-                config.CreateMap<TestToQuestionsRelationDTO, TestToQuestions>();
+                config.CreateMap<TestsToQuestionsRelationDTO, TestsToQuestions>();
+
+                config.CreateMap<AddInterviewDTO, Interview>();
             });
 
             return configuration;

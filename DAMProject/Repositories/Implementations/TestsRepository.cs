@@ -1,6 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using Database;
 using Entities;
+using Entities.EntityHelper.RelationshipEntities;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 using System;
@@ -60,23 +61,18 @@ namespace Repositories.Implementations
             }
         }
 
-        public async Task<Result> AddQuestionToTestAsync(TestToQuestions testToQuestions)
+        public async Task<Result> AddQuestionToTestAsync(TestsToQuestions testToQuestions)
         {
 
             try
             {
-                //var testToQuestions = new TestToQuestions
-                //{
-                //    Test = test,
-                //    Question = question
-                //};
-                var result = await _context.TestToQuestions.AddAsync(testToQuestions).ConfigureAwait(true);
+                var result = await _context.TestsToQuestions.AddAsync(testToQuestions).ConfigureAwait(true);
                 await _context.SaveChangesAsync().ConfigureAwait(true);
                 return Result.Success(result);
             }
             catch (Exception e)
             {
-                return Result.Failure<TestToQuestions>("Exception: " + e.Message);
+                return Result.Failure<TestsToQuestions>("Exception: " + e.Message);
             }
         }
 

@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Entities.EntityHelper.RelationshipEntities;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Entities
 {
@@ -13,7 +12,7 @@ namespace Entities
         public int HoursLimitTime { get; set; }
         public int MinutesLimitTime { get; set; }
 
-
-        public ICollection<TestToQuestions> TestToQuestions { get; set; }
+        public ICollection<TestsToQuestions> TestToQuestions { get; set; }
+        public virtual ICollection<TestsToInterviews> TestsToInterviews { get; set; }
     }
 }
