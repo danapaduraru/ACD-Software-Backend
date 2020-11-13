@@ -21,5 +21,7 @@ namespace Entities
         public Guid ApplicantId { get; set; }
         public Person Applicant { get; set; }
 
+        public ICollection<Interview> Interviews { get; set; }
+
     }
 }

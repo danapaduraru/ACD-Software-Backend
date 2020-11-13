@@ -61,7 +61,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("AddQuestionToTest")]
-        public async Task<IActionResult> AddQuestionToTest([FromBody] TestToQuestionsRelationDTO testToQuestDTO)
+        public async Task<IActionResult> AddQuestionToTest([FromBody] TestsToQuestionsRelationDTO testToQuestDTO)
         {
             var result = await _testsService.AddQuestionToTestAsync(testToQuestDTO);
 
