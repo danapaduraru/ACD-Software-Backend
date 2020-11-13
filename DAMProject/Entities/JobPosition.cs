@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities
 {
@@ -11,5 +12,7 @@ namespace Entities
         public string Description { get; set; }
         public DateTime ApplicationDeadline { get; set; }
         public DateTime StartDate { get; set; }
+
+        public ICollection<Application> Applications { get; set; }
     }
 }

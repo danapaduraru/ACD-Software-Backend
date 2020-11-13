@@ -4,53 +4,22 @@ using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Database.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201110181345_person-updated")]
+    partial class personupdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Entities.Application", b =>
-                {
-                    b.Property<Guid>("ApplicationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ApplicantId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("ApplicationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FeedbackText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FeedbackType")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("JobPositionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("ApplicationId");
-
-                    b.HasIndex("ApplicantId");
-
-                    b.HasIndex("JobPositionId");
-
-                    b.ToTable("Applications");
-                });
 
             modelBuilder.Entity("Entities.JobPosition", b =>
                 {
@@ -199,21 +168,6 @@ namespace Database.Migrations
                     b.HasIndex("TestId");
 
                     b.ToTable("TestToQuestions");
-                });
-
-            modelBuilder.Entity("Entities.Application", b =>
-                {
-                    b.HasOne("Entities.Person", "Applicant")
-                        .WithMany("Applications")
-                        .HasForeignKey("ApplicantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.JobPosition", "JobPosition")
-                        .WithMany("Applications")
-                        .HasForeignKey("JobPositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Entities.TestToQuestions", b =>

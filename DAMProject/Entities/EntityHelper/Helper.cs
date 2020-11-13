@@ -31,5 +31,21 @@
             Applicant = 1,
             Employee = 2
         }
+
+        public enum ApplicationStatus
+        {
+            Pending = 1,
+            AcceptedForInterview = 2,
+            InReview = 3,
+            Finalized = 4
+        }
+
+        public enum FeedbackType
+        {
+            None = 0,
+            Pending = 1,
+            Accepted = 2,
+            Rejected = 3,
+        }
     }
 }

@@ -46,6 +46,9 @@ namespace API
             services.AddScoped<IJobPositionsService, JobPositionsService>();
             services.AddScoped<IJobPositionsRepository, JobPositionsRepository>();
 
+            services.AddScoped<IApplicationsService, ApplicationsService>();
+            services.AddScoped<IApplicationsRepository, ApplicationsRepository>();
+
             services.AddSwaggerGen();
         }
 
