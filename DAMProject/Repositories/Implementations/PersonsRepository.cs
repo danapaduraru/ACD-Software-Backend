@@ -36,7 +36,9 @@ namespace Repositories.Implementations
             try
             {
                 var result = await _context.Persons.SingleOrDefaultAsync(p => p.PersonId == id).ConfigureAwait(true);
-                return Result.Success(result);
+                if (result != default(Person))
+                    return Result.Success(result);
+                return Result.Failure<Person>("Exception: Person not found!");
                
             }
             catch(Exception e)

@@ -2,13 +2,13 @@
 using CSharpFunctionalExtensions;
 using Entities;
 using Models.Test;
-using Models.ModelHelper;
 using Repositories.Interfaces;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Entities.EntityHelper.RelationshipEntities;
+using Models.ModelHelper.RelationshipDTOs;
 
 namespace Services.Implementations
 {

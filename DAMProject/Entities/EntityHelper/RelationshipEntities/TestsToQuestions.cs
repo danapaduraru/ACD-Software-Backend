@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Entities
+namespace Entities.EntityHelper.RelationshipEntities
 {
     public class TestsToQuestions
     {

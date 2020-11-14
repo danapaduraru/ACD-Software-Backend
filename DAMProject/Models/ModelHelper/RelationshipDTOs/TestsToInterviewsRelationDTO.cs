@@ -2,9 +2,9 @@
 
 namespace Models.ModelHelper.RelationshipDTOs
 {
-    public class TestsToQuestionsRelationDTO
+    public class TestsToInterviewsRelationDTO
     {
         public Guid TestId { get; set; }
-        public Guid QuestionID { get; set; }
+        public Guid InterviewId { get; set; }
     }
 }

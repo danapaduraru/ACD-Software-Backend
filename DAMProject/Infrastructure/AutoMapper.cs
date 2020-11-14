@@ -8,6 +8,7 @@ using Models.JobPosition;
 using Entities.EntityHelper.RelationshipEntities;
 using Models.Interview;
 using Models.Application;
+using Models.ModelHelper.RelationshipDTOs;
 
 namespace DAMInfrastructure
 {
@@ -30,12 +31,15 @@ namespace DAMInfrastructure
                 config.CreateMap<JobPosition, JobPositionDTO>();
 
                 config.CreateMap<AddInterviewDTO, Interview>();
+                config.CreateMap<Interview, InterviewDTO>();
+                config.CreateMap<UpdateInterviewDTO, Interview>();
 
                 config.CreateMap<AddApplicationDTO, Application>();
                 config.CreateMap<UpdateApplicationDTO, Application>();
                 config.CreateMap<Application, ApplicationDTO>();
 
                 config.CreateMap<TestsToQuestionsRelationDTO, TestsToQuestions>();
+                config.CreateMap<TestsToInterviewsRelationDTO, TestsToInterviews>();
             });
 
             return configuration;

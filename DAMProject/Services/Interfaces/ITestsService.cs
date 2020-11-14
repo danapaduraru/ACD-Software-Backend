@@ -3,7 +3,7 @@ using Models.Test;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Models.ModelHelper;
+using Models.ModelHelper.RelationshipDTOs;
 
 namespace Services.Interfaces
 {
@@ -13,6 +13,5 @@ namespace Services.Interfaces
         Task<Result<IEnumerable<TestDTO>>> GetAllAsync();
         Task<Result<TestDTO>> GetByIdAsync(Guid id);
         Task<Result> AddQuestionToTestAsync(TestsToQuestionsRelationDTO TQRelDTO);
-        
     }
 }
