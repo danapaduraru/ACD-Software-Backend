@@ -28,8 +28,8 @@
 
         public enum PersonType
         {
-            Applicant = 1,
-            Employee = 2
+            Employee = 1,
+            Applicant = 2
         }
 
         public enum ApplicationStatus
@@ -46,6 +46,13 @@
             Pending = 1,
             Accepted = 2,
             Rejected = 3,
+        }
+
+        public enum CheckAnswer
+        {
+            InReview = -1,
+            Wrong = 0,
+            Correct = 1
         }
     }
 }

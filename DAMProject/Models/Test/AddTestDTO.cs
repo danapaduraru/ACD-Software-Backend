@@ -6,5 +6,6 @@
         public string Description { get; set; }
         public int HoursLimitTime { get; set; }
         public int MinutesLimitTime { get; set; }
+        public double MaximumScore { get; set; }
     }
 }

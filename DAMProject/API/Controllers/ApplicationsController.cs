@@ -69,8 +69,8 @@ namespace API.Controllers
             return Ok(result.Value);
         }
 
-        [HttpGet("applicationid/{id?}")]
-        public async Task<IActionResult> GetByApplicationId(Guid? id)
+        [HttpGet("applicantid/{id?}")]
+        public async Task<IActionResult> GetByApplicantId(Guid? id)
         {
             var result = await _applicationsService.GetAllByApplicantIdAsync((Guid)id);
 

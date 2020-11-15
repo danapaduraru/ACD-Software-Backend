@@ -14,5 +14,6 @@ namespace Entities.EntityHelper.RelationshipEntities
         [ForeignKey("InterviewFK")]
         public Guid InterviewId { get; set; }
         public Interview Interview { get; set; }
+        public double UserScore { get; set; }
     }
 }

@@ -1,0 +1,6 @@
+﻿Interviews // GetTestsFromInterview
+Applications // To modify personId in recruiterId (code quality reasons)
+Login
+Password encryption
+CheckAnswer (post questionresponse)
+Calculate score

@@ -16,6 +16,8 @@ namespace Entities
         public string Option5 { get; set; }
         public Helper.CorrectAnswer CorrectAnswer{ get; set;}
         public bool Cancelled { get; set; } = false; 
+
         public ICollection<TestsToQuestions> TestToQuestions { get; set; }
+        public ICollection<QuestionResponse> QuestionResponses { get; set; }
     }
 }

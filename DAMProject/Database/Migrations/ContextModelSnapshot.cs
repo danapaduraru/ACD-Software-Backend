@@ -52,6 +52,84 @@ namespace Database.Migrations
                     b.ToTable("Applications");
                 });
 
+            modelBuilder.Entity("Entities.EntityHelper.RelationshipEntities.TestsToInterviews", b =>
+                {
+                    b.Property<Guid>("TestsToInterviewsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("InterviewId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("UserScore")
+                        .HasColumnType("float");
+
+                    b.HasKey("TestsToInterviewsId");
+
+                    b.HasIndex("InterviewId");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("TestsToInterviews");
+                });
+
+            modelBuilder.Entity("Entities.EntityHelper.RelationshipEntities.TestsToQuestions", b =>
+                {
+                    b.Property<Guid>("TestsToQuestionsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("QuestionID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("TestsToQuestionsId");
+
+                    b.HasIndex("QuestionID");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("TestsToQuestions");
+                });
+
+            modelBuilder.Entity("Entities.Interview", b =>
+                {
+                    b.Property<Guid>("InterviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ApplicationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DurationHours")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DurationMinutes")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("PersonId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("InterviewId");
+
+                    b.HasIndex("ApplicationId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Interviews");
+                });
+
             modelBuilder.Entity("Entities.JobPosition", b =>
                 {
                     b.Property<Guid>("JobPositionId")
@@ -157,6 +235,38 @@ namespace Database.Migrations
                     b.ToTable("Questions");
                 });
 
+            modelBuilder.Entity("Entities.QuestionResponse", b =>
+                {
+                    b.Property<Guid>("QuestionResponseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CheckAnswer")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("InterviewId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("QuestionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TestId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("QuestionResponseId");
+
+                    b.HasIndex("InterviewId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("TestId");
+
+                    b.ToTable("QuestionResponses");
+                });
+
             modelBuilder.Entity("Entities.Test", b =>
                 {
                     b.Property<Guid>("TestId")
@@ -169,6 +279,9 @@ namespace Database.Migrations
                     b.Property<int>("HoursLimitTime")
                         .HasColumnType("int");
 
+                    b.Property<double>("MaximumScore")
+                        .HasColumnType("float");
+
                     b.Property<int>("MinutesLimitTime")
                         .HasColumnType("int");
 
@@ -178,27 +291,6 @@ namespace Database.Migrations
                     b.HasKey("TestId");
 
                     b.ToTable("Tests");
-                });
-
-            modelBuilder.Entity("Entities.TestToQuestions", b =>
-                {
-                    b.Property<Guid>("TestToQuestionsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("QuestionID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TestId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("TestToQuestionsId");
-
-                    b.HasIndex("QuestionID");
-
-                    b.HasIndex("TestId");
-
-                    b.ToTable("TestToQuestions");
                 });
 
             modelBuilder.Entity("Entities.Application", b =>
@@ -216,7 +308,22 @@ namespace Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Entities.TestToQuestions", b =>
+            modelBuilder.Entity("Entities.EntityHelper.RelationshipEntities.TestsToInterviews", b =>
+                {
+                    b.HasOne("Entities.Interview", "Interview")
+                        .WithMany("TestsToInterviews")
+                        .HasForeignKey("InterviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Test", "Test")
+                        .WithMany("TestsToInterviews")
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.EntityHelper.RelationshipEntities.TestsToQuestions", b =>
                 {
                     b.HasOne("Entities.Question", "Question")
                         .WithMany("TestToQuestions")
@@ -226,6 +333,42 @@ namespace Database.Migrations
 
                     b.HasOne("Entities.Test", "Test")
                         .WithMany("TestToQuestions")
+                        .HasForeignKey("TestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Interview", b =>
+                {
+                    b.HasOne("Entities.Application", "Application")
+                        .WithMany("Interviews")
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Person", "Person")
+                        .WithMany("Interviews")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.QuestionResponse", b =>
+                {
+                    b.HasOne("Entities.Interview", "Interview")
+                        .WithMany("QuestionResponses")
+                        .HasForeignKey("InterviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Question", "Question")
+                        .WithMany("QuestionResponses")
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Entities.Test", "Test")
+                        .WithMany("QuestionResponses")
                         .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

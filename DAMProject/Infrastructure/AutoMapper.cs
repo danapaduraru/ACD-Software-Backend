@@ -9,6 +9,7 @@ using Entities.EntityHelper.RelationshipEntities;
 using Models.Interview;
 using Models.Application;
 using Models.ModelHelper.RelationshipDTOs;
+using Models.QuestionResponse;
 
 namespace DAMInfrastructure
 {
@@ -40,6 +41,9 @@ namespace DAMInfrastructure
 
                 config.CreateMap<TestsToQuestionsRelationDTO, TestsToQuestions>();
                 config.CreateMap<TestsToInterviewsRelationDTO, TestsToInterviews>();
+
+                config.CreateMap<AddQuestionResponseDTO, QuestionResponse>();
+                config.CreateMap<QuestionResponse, QuestionResponseDTO>();
             });
 
             return configuration;

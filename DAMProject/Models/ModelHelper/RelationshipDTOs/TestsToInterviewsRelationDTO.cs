@@ -6,5 +6,6 @@ namespace Models.ModelHelper.RelationshipDTOs
     {
         public Guid TestId { get; set; }
         public Guid InterviewId { get; set; }
+        public double UserScore { get; set; }
     }
 }

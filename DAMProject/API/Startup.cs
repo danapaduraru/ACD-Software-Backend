@@ -52,6 +52,9 @@ namespace API
             services.AddScoped<IApplicationsService, ApplicationsService>();
             services.AddScoped<IApplicationsRepository, ApplicationsRepository>();
 
+            services.AddScoped<IQuestionResponsesService, QuestionResponsesService>();
+            services.AddScoped<IQuestionResponsesRepository, QuestionResponsesRepository>();
+
             services.AddSwaggerGen();
         }
 

@@ -13,6 +13,7 @@ namespace Database
         //Main entities
         public DbSet<Person> Persons { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<QuestionResponse> QuestionResponses { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<JobPosition> JobPositions { get; set; }
         public DbSet<Interview> Interviews { get; set; }
@@ -34,9 +35,6 @@ namespace Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //new branch
-            //test pull request
-            //modified
         }
     }
 }

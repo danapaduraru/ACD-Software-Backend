@@ -22,5 +22,6 @@ namespace Entities
         public Application Application { get; set; }
 
         public ICollection<TestsToInterviews> TestsToInterviews { get; set; }
+        public ICollection<QuestionResponse> QuestionResponses { get; set; }
     }
 }
