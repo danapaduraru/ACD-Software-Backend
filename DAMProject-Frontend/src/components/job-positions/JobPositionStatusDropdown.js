@@ -1,8 +1,9 @@
 import { React } from 'react';
-import { Menu, Dropdown, message } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
+import { Select, message } from 'antd';
 
-const JobPositionStatusDropwdown = ( {currentStatus} ) => {
+const { Option } = Select;
+
+const JobPositionStatusDropwdown = ({ currentStatus }) => {
 
     const statusList = [
         "Applied",
@@ -11,24 +12,16 @@ const JobPositionStatusDropwdown = ( {currentStatus} ) => {
         "Accepted!"
     ]
 
-    const onClick = ({key}) => {
-        message.info(`Status changed to ${key}`);
-    };
-
-    const menu = (
-        <Menu onClick={onClick}>
-            {statusList.map((status) => 
-                <Menu.Item key={status}> {status} </Menu.Item>
-            )}
-        </Menu>
-    )
+    function handleChange(newStatus) {
+        message.info(`Status changed to ${newStatus}`);
+    }
 
     return (
-        <Dropdown overlay={menu}>
-            <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                {currentStatus} <DownOutlined />
-            </a>
-        </Dropdown>
+        <Select defaultValue={currentStatus} onChange={handleChange} style={{ width: 180 }}>
+            {statusList.map((status) =>
+                <Option value={status}> {status} </Option>
+            )}
+        </Select>
     )
 }
 
