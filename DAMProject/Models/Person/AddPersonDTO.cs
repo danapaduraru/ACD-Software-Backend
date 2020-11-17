@@ -11,8 +11,6 @@ namespace Models.Person
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public EnumHelper.PersonType PersonType { get; set; }
-        public string Position { get; set; }
         public string LinkCV { get; set; }
     }
 }

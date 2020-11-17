@@ -81,5 +81,19 @@ namespace API.Controllers
 
             return Ok();
         }
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<IActionResult> Login([FromBody]LoginDTO loginDTO)
+        {
+            var result = await _personsService.LoginAsync(loginDTO);
+
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok(result.Value);
+        }
     }
 }

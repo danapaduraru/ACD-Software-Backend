@@ -11,6 +11,5 @@ namespace Models.QuestionResponse
         public Guid InterviewId { get; set; }
         public Guid QuestionId { get; set; }
         public string Answer { get; set; }
-        public EnumHelper.CheckAnswer CheckAnswer { get; set; }
     }
 }

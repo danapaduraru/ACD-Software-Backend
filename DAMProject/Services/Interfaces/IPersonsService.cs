@@ -13,5 +13,6 @@ namespace Services.Interfaces
         Task<Result> AddAsync(AddPersonDTO personDTO);
         Task<Result> DeleteAsync(Guid id);
         Task<Result> UpdateAsync(Guid id, AddPersonDTO person);
+        Task<Result<PersonDTO>> LoginAsync(LoginDTO loginDTO);
     }
 }

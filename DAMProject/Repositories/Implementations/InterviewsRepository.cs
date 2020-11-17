@@ -37,6 +37,7 @@ namespace Repositories.Implementations
         {
             try
             {
+                testsToInterviews.UserScore = 0;
                 var result = await _context.TestsToInterviews.AddAsync(testsToInterviews).ConfigureAwait(true);
                 await _context.SaveChangesAsync().ConfigureAwait(true);
                 return Result.Success(result);

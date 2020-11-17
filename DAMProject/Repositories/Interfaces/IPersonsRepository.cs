@@ -13,5 +13,6 @@ namespace Repositories.Interfaces
         Task<Result> AddAsync(Person person);
         Task<Result> DeleteAsync(Guid id);
         Task<Result> UpdateAsync(Guid id, Person person);
+        Task<Result<Person>> LoginAsync(Person person);
     }
 }

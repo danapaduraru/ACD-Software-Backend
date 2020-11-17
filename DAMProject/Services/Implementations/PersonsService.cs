@@ -48,5 +48,12 @@ namespace Services.Implementations
             var entity = _mapper.Map<Person>(person);
             return _personsRepository.UpdateAsync(id, entity);
         }
+
+        public Task<Result<PersonDTO>> LoginAsync(LoginDTO loginDTO)
+        {
+            var personToLogin = _mapper.Map<Person>(loginDTO);
+            return _personsRepository.LoginAsync(personToLogin)
+                .Map(item => _mapper.Map<PersonDTO>(item));
+        }
     }
 }

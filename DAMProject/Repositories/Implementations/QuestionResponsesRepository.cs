@@ -22,6 +22,27 @@ namespace Repositories.Implementations
         {
             try
             {
+                var questions = await _context.TestsToQuestions.Where(ttq => ttq.TestId == questionResponse.TestId).Select(ttq => ttq.Question).ToListAsync().ConfigureAwait(true);
+                var myquestion = questions.Where(q => q.QuestionId == questionResponse.QuestionId).FirstOrDefault();
+                if (myquestion.QuestionType == Helper.QuestionType.OneChoice)
+                {
+                    if (questionResponse.Answer == myquestion.CorrectAnswer.ToString())
+                        questionResponse.CheckAnswer = Helper.CheckAnswer.Correct;
+                    else
+                        questionResponse.CheckAnswer = Helper.CheckAnswer.Wrong;
+                }
+                else
+                    questionResponse.CheckAnswer = Helper.CheckAnswer.InReview;
+
+                if (questionResponse.CheckAnswer == Helper.CheckAnswer.Correct)
+                {
+                    var testToInterview = await _context.TestsToInterviews.Where(a => a.TestId == questionResponse.TestId && a.InterviewId == questionResponse.InterviewId).SingleOrDefaultAsync().ConfigureAwait(true);
+                    var test = await _context.Tests.Where(t => t.TestId == questionResponse.TestId).SingleOrDefaultAsync().ConfigureAwait(true);
+                    var questionScore = test.MaximumScore / questions.Count;
+                    testToInterview.UserScore += questionScore;
+                }
+                
+
                 var result = await _context.QuestionResponses.AddAsync(questionResponse).ConfigureAwait(true);
                 await _context.SaveChangesAsync().ConfigureAwait(true);
                 return Result.Success(result);

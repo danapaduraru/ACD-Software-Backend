@@ -4,8 +4,8 @@
     {
         public enum QuestionType
         {
-            Text = 1,
-            OneChoice = 2,
+            OneChoice = 1,
+            Text = 2
         }
 
         public enum CorrectAnswer

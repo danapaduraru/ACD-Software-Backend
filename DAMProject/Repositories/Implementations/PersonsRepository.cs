@@ -1,6 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using Database;
 using Entities;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 using System;
@@ -51,6 +52,10 @@ namespace Repositories.Implementations
         {
             try
             {
+                person.Password = Encrypter.MD5Hash(person.Password);
+                person.Position = "NONE";
+                person.PersonType = Helper.PersonType.Applicant;
+                
                 var result = await _context.Persons.AddAsync(person).ConfigureAwait(true);
                 await _context.SaveChangesAsync().ConfigureAwait(true);
                 return Result.Success(result);
@@ -87,7 +92,7 @@ namespace Repositories.Implementations
                 personToUpdate.PhoneNumber = person.PhoneNumber;
                 personToUpdate.BirthDate = person.BirthDate;
                 personToUpdate.Email = person.Email;
-                personToUpdate.Password = person.Password;
+                personToUpdate.Password = Encrypter.MD5Hash(person.Password);
 
                 await _context.SaveChangesAsync().ConfigureAwait(true);
                 return Result.Success();
@@ -95,6 +100,28 @@ namespace Repositories.Implementations
             catch(Exception e)
             {
                 return Result.Failure("Exception: " + e.Message);
+            }
+        }
+
+        public async Task<Result<Person>> LoginAsync(Person person)
+        {
+            try
+            {
+                var email = person.Email;
+                var password = Encrypter.MD5Hash(person.Password);
+                var requestedPerson = await _context.Persons.SingleOrDefaultAsync(p => p.Email == email).ConfigureAwait(true);
+                
+                if (requestedPerson == default(Person))
+                    throw new ArgumentException("Invalid Email");
+                else if (requestedPerson.Password != password)
+                    throw new ArgumentException("Invalid Password");
+
+                return Result.Success(requestedPerson);
+
+            }
+            catch(Exception e)
+            {
+                return Result.Failure<Person>("Exception: " + e.Message);
             }
         }
     }
