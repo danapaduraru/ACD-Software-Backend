@@ -2,7 +2,6 @@ import { React } from 'react';
 import { Link } from 'react-router-dom'
 import { Layout, Menu } from 'antd';
 import {
-    FileOutlined,
     UserOutlined,
     BulbOutlined,
     CommentOutlined

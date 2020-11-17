@@ -60,7 +60,7 @@ const JobPosition = ({id, title, date, location, description}) => {
 const GrayBackground = styled.div`
     background-color: #eaedf2;
     min-height: 100vh;
-    padding: 100px;
+    padding: 80px;
 `
 
 const JobPositionContainer = styled.div`
