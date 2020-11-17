@@ -16,7 +16,7 @@ const ApplicantProfile = () => {
             "title": ".NET Backend Developer Intern",
             "status": "Applied"
         },
-    ]
+    ];
 
     return (
         <>
