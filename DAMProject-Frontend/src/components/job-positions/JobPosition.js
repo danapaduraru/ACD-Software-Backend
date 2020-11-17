@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { Button } from 'antd';
+import { Button, Divider } from 'antd';
 import { FileOutlined } from '@ant-design/icons';
 import styled from 'styled-components'
 
@@ -64,40 +64,41 @@ const JobPosition = () => {
                 </p>
             </JobPositionContainer>
             {/* Only for employees: */}
-            <JobPositionContainer>
-                <ApplicationsContainer>
-                    <h1> <FileOutlined /> Applications </h1>
-                    <table>
-                        <tr>
-                            <th> Name </th>
-                            <th> Application date </th>
-                            <th> Resume </th>
-                            <th> Change status </th>
-                            <th> Actions </th>
-                        </tr>
-                        {applications.map((app) =>
-                            <ApplicationTableRow
-                                id={app.id}
-                                name={app.name}
-                                applicationDate={app.applicationDate}
-                                resume={app.resume}
-                                status={app.status}
-                            />
-                        )}
-                    </table>
-                </ApplicationsContainer>
-            </JobPositionContainer>
+            <Divider />
+            <ApplicationsContainer>
+                <h1> <FileOutlined /> Applications </h1>
+                <table>
+                    <tr>
+                        <th> Name </th>
+                        <th> Application date </th>
+                        <th> Resume </th>
+                        <th> Change status </th>
+                        <th> Actions </th>
+                    </tr>
+                    {applications.map((app) =>
+                        <ApplicationTableRow
+                            id={app.id}
+                            name={app.name}
+                            applicationDate={app.applicationDate}
+                            resume={app.resume}
+                            status={app.status}
+                        />
+                    )}
+                </table>
+            </ApplicationsContainer>            
         </>
     )
 }
 
 
 const ApplicationTableRow = ({ id, name, applicationDate, resume, status }) => {
-
     // ????? vedem
     let actions = "";
     if (status === "In review") {
-        actions = <Button> Schedule interview  </Button>
+        actions = <div style={{ display: 'flex' }}>
+            <Button type="primary" style={{ marginRight: '10px' }}> Schedule interview  </Button>
+            <Button danger> Refuse application  </Button>
+        </div>
     }
 
     return (
@@ -112,7 +113,7 @@ const ApplicationTableRow = ({ id, name, applicationDate, resume, status }) => {
                 <a href="#"> {resume}  </a>
             </td>
             <td>
-                <JobPositionStatusDropdown 
+                <JobPositionStatusDropdown
                     currentStatus={status}
                 />
             </td>
@@ -124,14 +125,14 @@ const ApplicationTableRow = ({ id, name, applicationDate, resume, status }) => {
 }
 
 const JobPositionContainer = styled.div`
-    width: 50%;
+    width: 65%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 30px 20px 10px 20px;
     font-size: 110%;
 `
 
 const JobPositionHeading = styled.div`
-    width: 50%;
+    width: 55%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -166,17 +167,22 @@ const JobPositionHeading = styled.div`
 `
 
 const ApplicationsContainer = styled.div`
+    width: 65%;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 110%;
     margin-bottom: 50px;
 
     h1 {
         color: #0073A8;
-        font-size: 150%;
+        font-size: 160%;
     }
 
     table {
         margin-top: 30px;
         border-collapse: collapse;
         width: 100%;
+        background-color: white;
     }
 
     th {
