@@ -17,13 +17,15 @@ const ACDHeader = () => {
                 <BulbOutlined style={{ fontSize: '20px', color: 'white', marginRight: '20px' }} />
                 <Link to="/" className="my-logo"> ACD Software </Link>
 
-                <Menu.Item key="2" icon={<UserOutlined />}>
+                <Menu.Item key="1" icon={<UserOutlined />}>
                     <Link to="/profile"> Profile </Link>
                 </Menu.Item>
-                <Menu.Item key="4" icon={<CommentOutlined />}>
-                    Interviews
+
+                <Menu.Item key="2" icon={<CommentOutlined />}>
+                    <Link to="/interviews"> Interviews </Link>
                 </Menu.Item>
-                <Menu.Item key="5" icon={<UserOutlined />}>
+                
+                <Menu.Item key="3" icon={<UserOutlined />}>
                     <Link to="/login"> Login </Link>
                 </Menu.Item>
             </Menu>
