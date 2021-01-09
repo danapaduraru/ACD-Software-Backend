@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/DAMProject-Frontend/debug.log
+*.v2
+DAMProject/.vs/DAMProject/v16/.suo
+DAMProject/API/bin/Debug/netcoreapp3.1/API.deps.json
+*.cache
