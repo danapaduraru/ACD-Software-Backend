@@ -11,13 +11,32 @@ const { Search } = Input;
 class Home extends Component {
     state = {
         jobPositionsList: [],
+        searchList: [],
     };
 
     componentDidMount() {
         axios.get(endpoints.JOB_POSITIONS)
             .then(res => {
                 this.setState({ jobPositionsList: res.data });
+                this.setState({ searchList: res.data });
             });
+    }
+
+    searchOnChange(e) {
+        var filter = e.target.value;
+
+        var list = this.state.searchList.filter(function(item) {
+            return item.position.includes(filter);
+          });
+
+        console.log(list);
+
+        if(filter === '') {
+            this.setState({ searchList: this.state.jobPositionsList });
+        }
+        else {
+            this.setState({ searchList: list});
+        }
     }
 
     render() {
@@ -32,11 +51,12 @@ class Home extends Component {
                             allowClear
                             enterButton="Search"
                             size="large"
+                            onChange={(e) => this.searchOnChange(e)}
                         />
                     </SearchContainer>
                 </JobSearchContainer>
                 <GrayBackground>
-                    {this.state.jobPositionsList.map((jobPosition) =>
+                    {this.state.searchList.map((jobPosition) =>
                         <JobPosition
                             id={jobPosition.jobPositionId}
                             status={jobPosition.status}
