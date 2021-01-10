@@ -1,12 +1,12 @@
 import { React, Component } from 'react';
-import { Button } from 'antd';
+import { Link } from 'react-router-dom';
+import { message, Button, Search } from 'antd';
 import { FileOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import styled from 'styled-components'
 import endpoints from '../../Constants';
 
 import Header from '../common/Header';
-import JobPositionStatusDropdown from './JobPositionStatusDropdown';
 
 class JobPosition extends Component {
 
@@ -28,45 +28,27 @@ class JobPosition extends Component {
         });
     }
 
-    getApplicantNames() {
-        // get the names for each applicant
-        var applicants = [];
-        this.state.applications.forEach(
-            application =>
-                axios.get(endpoints.APPLICANT_BY_ID + application.applicantId)
-                .then(res => {
-                    applicants.push(res.data.firstName + ' ' + res.data.lastName)
+    saveApplication() {
+        var applicantID = "F40D185E-5381-42F0-DDE8-08D8B4BB6E7A";
+        var jobID = this.props.location.pathname.substring(this.props.location.pathname.length - 36);
+
+        var requestBody = {
+            "jobPositionId": jobID,
+            "applicantId": applicantID
+        }
+
+        axios.post(endpoints.ADD_APPLICATION, requestBody)
+            .then(
+                res => {
+                    console.log(res);
+                    message.success('You successfully applied to this job position.');
                 })
-        )
-       return applicants;
-    } 
-
-    // NU MERGE FRATE NU MERGE 
-
-    getFullApplications() {
-        var fullApplications = [];
-        var names = this.getApplicantNames();
-
-        // var applications = this.state.applications;
-        // var i;
-        // for(i = 0; i < applications.length; i++) {
-        //     var newApplication = {
-        //         'date': new Date(applications[i].applicationDate).toDateString(),
-        //         'name': names[i],
-        //         'status': applications[i].status
-        //     }
-        //     fullApplications.push(newApplication);
-        // }
-        return fullApplications;
     }
 
     render() {
-        var applications = this.getFullApplications();
-        // console.log("FULL ");
-        // console.log(applications);
         var postedDate = new Date(this.state.jobPosition.startDate).toDateString();
         var deadline = new Date(this.state.jobPosition.applicationDeadline).toDateString();
-
+        console.log(this.state.applications);
         return (
             <>
                 <Header />
@@ -76,7 +58,7 @@ class JobPosition extends Component {
                             <h1> {this.state.jobPosition.position} </h1>
                             <p> Posted <b> {postedDate} </b> </p>
                         </div>
-                        <button> Apply now </button>
+                        <button onClick={() => this.saveApplication()}> Apply now </button>
                     </JobPositionHeading>
                 </div>
                 <JobPositionContainer>
@@ -98,12 +80,12 @@ class JobPosition extends Component {
                                 <th> Change status </th>
                                 <th> Actions </th>
                             </tr>
-                            {applications.map((app) =>
+                            {this.state.applications.map((app) =>
                                 <ApplicationTableRow
                                     id={app.id}
-                                    name={app.name}
+                                    firstName={app.applicantFirstName}
+                                    lastName={app.applicantLastName}
                                     applicationDate={app.applicationDate}
-                                    resume={app.resume}
                                     status={app.status}
                                 />
                             )}
@@ -115,31 +97,43 @@ class JobPosition extends Component {
     }
 }
 
-const ApplicationTableRow = ({ id, name, applicationDate, resume, status }) => {
+var appStatus = {
+    "1": "Pending",
+    "2": "Accepted For Interview",
+    "3": "In Review ",
+    "4": "Finalized"
+}
 
-    let actions = "";
-    if (status === "In review") {
-        actions = <Button> Schedule interview  </Button>
-    }
+var appStatusColor = {
+    "1": "green",
+    "2": "blue",
+    "3": "red",
+    "4": "gray"
+}
 
+const ApplicationTableRow = ({ id, firstName, lastName, applicationDate, status }) => {
+
+    var redirect = "/createinterview";
     return (
         <tr>
             <td>
-                {name}
+                {firstName + ' ' + lastName}
             </td>
             <td>
-                {applicationDate}
+                {new Date(applicationDate).toDateString()}
             </td>
             <td>
-                <a href="#"> {resume}  </a>
+                <a href="#"> resume.pdf  </a>
             </td>
             <td>
-                <JobPositionStatusDropdown
-                    currentStatus={status}
-                />
+                <b><p style={{ color: appStatusColor[status] }}> {appStatus[status]} </p></b>
             </td>
             <td>
-                {actions}
+                <Button> 
+                    <Link to={redirect}>
+                    Schedule interview
+                    </Link>  
+                </Button>
             </td>
         </tr>
     )

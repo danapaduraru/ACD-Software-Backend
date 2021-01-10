@@ -13,8 +13,6 @@ class ApplicantProfile extends Component {
         applicant: {}
     }
 
-    // ????????????????
-
     componentDidMount()
     {
         var id = 'F40D185E-5381-42F0-DDE8-08D8B4BB6E7A';
@@ -27,46 +25,10 @@ class ApplicantProfile extends Component {
         .then (res => {
             this.setState({ applicant: res.data});
         });
-        this.setState({ jobNames: this.getJobPositionNames()});
-    }
-
-    getJobPositionNames() {
-        var names = [];
-        this.state.applications.forEach(
-            application => {
-                axios.get(endpoints.JOB_POSITION_BY_ID + application.jobPositionId)
-                .then (res => {
-                    names.push(res.data.position);
-                });
-            }
-        )
-        return names;
     }
 
     render () {
-        console.log(this.state.jobNames);
         var fullName = this.state.applicant.firstName + ' ' + this.state.applicant.lastName;
-        // var jobNames = this.getJobPositionNames();
-        // console.log(jobNames);
-        // console.log(jobNames.length);
-        // console.log(jobNames[0]);
-        // var fullApplications = this.state.applications.map(function(app, i) {
-        //     return [app, jobNames[i]];
-        // });
-        // console.log(fullApplications);
-
-        const applications = [
-            {
-                "id": "1",
-                "title": "Junior Software Development Engineer",
-                "status": "Accepted for interview"
-            },
-            {
-                "id": "2",
-                "title": ".NET Backend Developer Intern",
-                "status": "Applied"
-            },
-        ];
 
         return (
             <>
@@ -87,10 +49,10 @@ class ApplicantProfile extends Component {
                             <th> Status </th>
                             <th> Action </th>
                         </tr>
-                        {applications.map((app) =>
+                        {this.state.applications.map((app) =>
                             <ApplicationTableRow
                                 id={app.id}
-                                title={app.title}
+                                job={app.jobName}
                                 status={app.status}
                             />
                         )}
@@ -101,27 +63,34 @@ class ApplicantProfile extends Component {
     }
 }
 
-const ApplicationTableRow = ({ id, title, status }) => {
+const ApplicationTableRow = ({ id, job, status }) => {
+
+    const appStatus = {
+        "1": "Pending",
+        "2": "Accepted For Interview",
+        "3": "In Review ",
+        "4": "Finalized"
+    }
 
     const tagColor = {
-        'Applied': 'blue',
-        'In review': 'orange',
-        'Not accepted': 'red',
-        'Accepted for interview': 'green'
+        'In Review': 'blue',
+        'Pending': 'orange',
+        'Finalized': 'red',
+        'Accepted For Interview': 'green'
     }
 
     let actions = "";
-    if (status === "Accepted for interview") {
+    if (status === "Accepted For Interview") {
         actions = <Button type="primary"> Accept interview  </Button>
     }
 
     return (
         <tr>
             <td>
-                <a href="#"> {title}  </a>
+                <a href="#"> {job}  </a>
             </td>
             <td>
-                <Tag color={tagColor[status]} style={{ fontSize: '16px' }}> {status} </Tag>
+                <Tag color={tagColor[appStatus[status]]} style={{ fontSize: '16px' }}> {appStatus[status]} </Tag>
             </td>
             <td>
                 {actions}
