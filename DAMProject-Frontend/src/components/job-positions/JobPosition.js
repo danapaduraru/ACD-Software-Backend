@@ -1,100 +1,122 @@
-import { React } from 'react';
+import { React, Component } from 'react';
 import { Button } from 'antd';
 import { FileOutlined } from '@ant-design/icons';
+import axios from 'axios';
 import styled from 'styled-components'
+import endpoints from '../../Constants';
 
 import Header from '../common/Header';
 import JobPositionStatusDropdown from './JobPositionStatusDropdown';
 
-const JobPosition = () => {
+class JobPosition extends Component {
 
-    const applications = [
-        {
-            "id": "1",
-            "name": "Dana Paduraru",
-            "applicationDate": "13/08/2020",
-            "status": "Applied",
-            "resume": "resume.pdf"
-        },
-        {
-            "id": "2",
-            "name": "John Doe",
-            "applicationDate": "14/08/2020",
-            "status": "In review",
-            "resume": "Resume.pdf"
-        },
-        {
-            "id": "3",
-            "name": "Johnny Go",
-            "applicationDate": "20/08/2020",
-            "status": "Accepted for interview",
-            "resume": "CV.pdf"
-        }
-    ];
+    state = {
+        jobPosition: {},
+        applications: [],
+    };
 
-    return (
-        <>
-            <Header />
-            <div style={{ backgroundColor: '#eaedf2', padding: '50px' }}>
-                <JobPositionHeading>
-                    <div>
-                        <h1> Junior Software Development Engineer </h1>
-                        <p> Posted 6 August 2019 </p>
-                    </div>
-                    <button> Apply now </button>
-                </JobPositionHeading>
-            </div>
-            <JobPositionContainer>
-                <h2> Location </h2>
-                <p> Iasi, Romania </p>
-                <h2> Description </h2>
-                <p> Join our tech-focused, data-driven team & watch your Software Developer career soar. Do your best work as a Software Developer & join a community of over 4,500 specialists. Professional development. Work on the best teams. Vault: #1 consulting firm.
-                <br></br>
-                    <br></br><strong> BASIC QUALIFICATIONS </strong>
-                    <br></br>
-                    <br></br>· Bachelor's degree in Computer Science;
-                <br></br>· Deep understanding of Computer Science fundamentals including software architecture, design patterns, data structures, algorithms and complexity analysis;
-                <br></br>· 2+ years professional experience in software development
-                <br></br>· Proficiency in at least one modern programming language such as Java, C#, C++, Typescript, Ruby or Python;
-                <br></br>· Expertise building scalable, rich, usable web applications;
-                <br></br>· Good understanding of big-data technologies and storage types;
-                <br></br>· Ability to thrive in fast-paced, dynamic environment;
-                <br></br>· Excellent problem solving and troubleshooting skills;
-                <br></br>· Knowledge of professional software engineering practices & best practices for the full software development life cycle, including coding standards, code reviews, source control management, build processes, testing at all levels and operations.
-                </p>
-            </JobPositionContainer>
-            {/* Only for employees: */}
-            <JobPositionContainer>
-                <ApplicationsContainer>
-                    <h1> <FileOutlined /> Applications </h1>
-                    <table>
-                        <tr>
-                            <th> Name </th>
-                            <th> Application date </th>
-                            <th> Resume </th>
-                            <th> Change status </th>
-                            <th> Actions </th>
-                        </tr>
-                        {applications.map((app) =>
-                            <ApplicationTableRow
-                                id={app.id}
-                                name={app.name}
-                                applicationDate={app.applicationDate}
-                                resume={app.resume}
-                                status={app.status}
-                            />
-                        )}
-                    </table>
-                </ApplicationsContainer>
-            </JobPositionContainer>
-        </>
-    )
+    componentDidMount() {
+        var jobID = this.props.location.pathname.substring(this.props.location.pathname.length - 36);
+        axios.get(endpoints.JOB_POSITION_BY_ID + jobID)
+            .then(res => {
+                this.setState({ jobPosition: res.data });
+            });
+
+        axios.get(endpoints.APPLICATIONS_FOR_JOB_POSITION + jobID)
+        .then(res => {
+            this.setState({ applications: res.data });
+        });
+    }
+
+    getApplicantNames() {
+        // get the names for each applicant
+        var applicants = [];
+        this.state.applications.forEach(
+            application =>
+                axios.get(endpoints.APPLICANT_BY_ID + application.applicantId)
+                .then(res => {
+                    applicants.push(res.data.firstName + ' ' + res.data.lastName)
+                })
+        )
+       return applicants;
+    } 
+
+    // NU MERGE FRATE NU MERGE 
+
+    getFullApplications() {
+        var fullApplications = [];
+        var names = this.getApplicantNames();
+
+        // var applications = this.state.applications;
+        // var i;
+        // for(i = 0; i < applications.length; i++) {
+        //     var newApplication = {
+        //         'date': new Date(applications[i].applicationDate).toDateString(),
+        //         'name': names[i],
+        //         'status': applications[i].status
+        //     }
+        //     fullApplications.push(newApplication);
+        // }
+        return fullApplications;
+    }
+
+    render() {
+        var applications = this.getFullApplications();
+        // console.log("FULL ");
+        // console.log(applications);
+        var postedDate = new Date(this.state.jobPosition.startDate).toDateString();
+        var deadline = new Date(this.state.jobPosition.applicationDeadline).toDateString();
+
+        return (
+            <>
+                <Header />
+                <div style={{ backgroundColor: '#eaedf2', padding: '50px' }}>
+                    <JobPositionHeading>
+                        <div>
+                            <h1> {this.state.jobPosition.position} </h1>
+                            <p> Posted <b> {postedDate} </b> </p>
+                        </div>
+                        <button> Apply now </button>
+                    </JobPositionHeading>
+                </div>
+                <JobPositionContainer>
+                    <p> <b> Please apply until {deadline}. </b> </p>
+                    <h2> Level </h2>
+                    <p> {this.state.jobPosition.level} </p>
+                    <h2> Description </h2>
+                    <p> {this.state.jobPosition.description} </p>
+                </JobPositionContainer>
+                
+                <JobPositionContainer>
+                    <ApplicationsContainer>
+                        <h1> <FileOutlined /> Applications </h1>
+                        <table>
+                            <tr>
+                                <th> Name </th>
+                                <th> Application date </th>
+                                <th> Resume </th>
+                                <th> Change status </th>
+                                <th> Actions </th>
+                            </tr>
+                            {applications.map((app) =>
+                                <ApplicationTableRow
+                                    id={app.id}
+                                    name={app.name}
+                                    applicationDate={app.applicationDate}
+                                    resume={app.resume}
+                                    status={app.status}
+                                />
+                            )}
+                        </table>
+                    </ApplicationsContainer>
+                </JobPositionContainer>
+            </>
+        )
+    }
 }
-
 
 const ApplicationTableRow = ({ id, name, applicationDate, resume, status }) => {
 
-    // ????? vedem
     let actions = "";
     if (status === "In review") {
         actions = <Button> Schedule interview  </Button>
@@ -112,7 +134,7 @@ const ApplicationTableRow = ({ id, name, applicationDate, resume, status }) => {
                 <a href="#"> {resume}  </a>
             </td>
             <td>
-                <JobPositionStatusDropdown 
+                <JobPositionStatusDropdown
                     currentStatus={status}
                 />
             </td>

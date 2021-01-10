@@ -1,58 +1,83 @@
-import { React } from 'react';
+import { React, Component } from 'react';
+import axios from 'axios';
 import styled from 'styled-components'
 
 import Header from '../common/Header';
 import JobPositionSearch from './JobPositionsSearch';
+import endpoints from '../../Constants';
 
-const Home = () => {
+class Home extends Component {
+    state = {
+        jobPositionsList: [],
+    };
 
-    const jobPositionsList = [
-        {
-            "id": "1",
-            "title": "Junior Software Development Engineer",
-            "date": "6 August 2019",
-            "location": "Iasi, Romania",
-            "description": "Join our tech-focused, data-driven team & watch your Software Developer career soar. Do your best work as a Software Developer & join a community of over 4,500 specialists. Professional development. Work on the best teams. Vault: #1 consulting firm."
-        },
-        {
-            "id": "2",
-            "title": ".NET Backend Developer Intern",
-            "date": "3 August 2019",
-            "location": "Iasi, Romania",
-            "description": ".NET is a Microsoft framework that allows developers to create applications, online software, and interfaces. .NET is just one of the frameworks from Microsoft but is the top solution for Windows servers both on local networks and in the cloud."
-        },
-    ]
-
-    return (
-        <>
-            <Header />
-            <JobPositionSearch />
-            <GrayBackground>
-                {
-                    jobPositionsList.map((jobPosition) => 
+    componentDidMount()
+    {
+        axios.get(endpoints.JOB_POSITIONS)
+            .then (res => {
+                console.log(res);
+                this.setState({ jobPositionsList: res.data});
+            });
+    }
+    
+    render () {
+        return (
+            <>
+                <Header />
+                <JobPositionSearch />
+                <GrayBackground>
+                    { this.state.jobPositionsList.map((jobPosition) => 
                         <JobPosition 
-                            title={jobPosition.title}
-                            date={jobPosition.date}
-                            location={jobPosition.location}
+                            id = {jobPosition.jobPositionId}
+                            status = {jobPosition.status}
+                            title={jobPosition.position}
+                            deadlinedate={jobPosition.applicationDeadline}
+                            startdate={jobPosition.startDate}
+                            level={jobPosition.level}
                             description={jobPosition.description}
                         />
-                    )
-                }
-            </GrayBackground>
-        </>
-    )
+                        )
+                    }
+                </GrayBackground>
+            </>
+        )
+    }
 }
 
-const JobPosition = ({id, title, date, location, description}) => {
+var dictStatus = {
+    "1" : "Open",
+    "2" : "Soon",
+    "3" : "Closed",
+    "4" : "Cancelled"
+}
+
+var dictStatusColor = {
+    "1" : "green",
+    "2" : "blue",
+    "3" : "red",
+    "4" : "gray"
+}
+
+const JobPosition = ({id, status, title, deadlinedate, startdate, level, description}) => {
+    var redirect = "/JobPositions/" + id;
+
+    var formattedDeadlineDate = new Date(deadlinedate).toDateString();
+
+    var formattedStartDate = new Date(startdate).toDateString();
+
     return (
         <JobPositionContainer>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h2> {title} </h2>
-                <p> Posted {date} </p>
+                <h2> {title} ({level}) </h2>
+                <p> <b>Apply Until: </b> {formattedDeadlineDate} </p>
             </div>
-            <p> {location} </p>
+            <b><p style = {{color: dictStatusColor[status]}}> {dictStatus[status]} </p></b>
             <p> {description} </p>
-            <a href="/"> Read more </a>
+            
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <b><a href={redirect}> Read more </a></b>
+                <p> <b>Start Date:</b> {formattedStartDate} </p>
+            </div>
         </JobPositionContainer>
     )
 }

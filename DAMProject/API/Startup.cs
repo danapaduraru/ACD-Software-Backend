@@ -14,6 +14,7 @@ namespace API
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -29,7 +30,8 @@ namespace API
             services.AddDbContext<Context>(options =>
             {
                 //options.UseSqlServer(@"Data Source=DESKTOP-1PE5EKU\SQLEXPRESS;Initial Catalog=DAMProject; Trusted_Connection=True;");
-                options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DAM; Trusted_Connection=True;");
+                options.UseSqlServer(@"Data Source=DESKTOP-RG20533\SQLEXPRESS;Initial Catalog=dam; Trusted_Connection=True;");
+                //options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DAM; Trusted_Connection=True;");
             });
 
             services.AddSingleton(DAMInfrastructure.AutoMapper.Configure().CreateMapper());
@@ -55,6 +57,16 @@ namespace API
             services.AddScoped<IQuestionResponsesService, QuestionResponsesService>();
             services.AddScoped<IQuestionResponsesRepository, QuestionResponsesRepository>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:3000",
+                                                          "https://localhost:3000");
+                                  });
+            });
+
             services.AddSwaggerGen();
         }
 
@@ -69,6 +81,8 @@ namespace API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 

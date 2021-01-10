@@ -21,7 +21,7 @@ const ACDHeader = () => {
                     <Link to="/profile"> Profile </Link>
                 </Menu.Item>
                 <Menu.Item key="4" icon={<CommentOutlined />}>
-                    Interviews
+                <Link to="/interviews"> Interviews </Link>
                 </Menu.Item>
                 <Menu.Item key="5" icon={<UserOutlined />}>
                     <Link to="/login"> Login </Link>
