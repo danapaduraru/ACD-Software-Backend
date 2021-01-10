@@ -14,5 +14,9 @@ namespace Models.Application
         public string FeedbackText { get; set; }
         public Guid JobPositionId { get; set; }
         public Guid ApplicantId { get; set; }
+
+        public string JobName { get; set; }
+        public string ApplicantFirstName { get; set; }
+        public string ApplicantLastName { get; set; }
     }
 }

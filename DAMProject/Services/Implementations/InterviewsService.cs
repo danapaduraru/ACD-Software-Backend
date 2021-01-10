@@ -55,8 +55,13 @@ namespace Services.Implementations
 
         public Task<Result<InterviewDTO>> GetByPersonIdAsync(Guid id)
         {
-            return _interviewsRepository.GetByPersonIdAsync(id)
+            var result = _interviewsRepository.GetByPersonIdAsync(id)
                 .Map(item => _mapper.Map<InterviewDTO>(item));
+            var value = result.Result.Value;
+            var applicant = _interviewsRepository.GetApplicantByIdAsync(id).Result.Value;
+            value.ApplicantFirstName = applicant.FirstName;
+            value.ApplicantLastName = applicant.LastName;
+            return result;
         }
 
         public Task<Result> UpdateAsync(Guid id, UpdateInterviewDTO updateInterviewDTO)

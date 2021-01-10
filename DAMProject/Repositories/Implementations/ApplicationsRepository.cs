@@ -108,5 +108,35 @@ namespace Repositories.Implementations
                 return Result.Failure<IQueryable<Application>>("Exception: " + e.Message);
             }
         }
+
+        public async Task<Result<JobPosition>> GetJobPositionByIdAsync(Guid id)
+        {
+            try
+            {
+                var result = await _context.JobPositions.SingleOrDefaultAsync(p => p.JobPositionId == id).ConfigureAwait(true);
+                return Result.Success(result);
+
+            }
+            catch (Exception e)
+            {
+                return Result.Failure<JobPosition>("Exception: " + e.Message);
+            }
+        }
+
+        public async Task<Result<Person>> GetApplicantByIdAsync(Guid id)
+        {
+            try
+            {
+                var result = await _context.Persons.SingleOrDefaultAsync(p => p.PersonId == id).ConfigureAwait(true);
+                if (result != default(Person))
+                    return Result.Success(result);
+                return Result.Failure<Person>("Exception: Person not found!");
+
+            }
+            catch (Exception e)
+            {
+                return Result.Failure<Person>("Exception: " + e.Message);
+            }
+        }
     }
 }

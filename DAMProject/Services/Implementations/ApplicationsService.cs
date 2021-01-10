@@ -30,14 +30,26 @@ namespace Services.Implementations
         }
         public Task<Result<IEnumerable<ApplicationDTO>>> GetAllByJobIdAsync(Guid id)
         {
-            return _personsRepository.GetAllByJobIdAsync(id)
+            var result = _personsRepository.GetAllByJobIdAsync(id)
                 .Map(list => _mapper.Map<IEnumerable<ApplicationDTO>>(list));
+            foreach (var value in result.Result.Value)
+            {
+                var applicant = _personsRepository.GetApplicantByIdAsync(value.ApplicantId).Result.Value;
+                value.ApplicantFirstName = applicant.FirstName;
+                value.ApplicantLastName = applicant.LastName;
+            }
+            return result;
         }
 
         public Task<Result<IEnumerable<ApplicationDTO>>> GetAllByApplicantIdAsync(Guid id)
         {
-            return _personsRepository.GetAllByApplicantIdAsync(id)
+            var result = _personsRepository.GetAllByApplicantIdAsync(id)
                 .Map(list => _mapper.Map<IEnumerable<ApplicationDTO>>(list));
+            foreach(var value in result.Result.Value)
+            {
+                value.JobName = _personsRepository.GetJobPositionByIdAsync(value.JobPositionId).Result.Value.Position;
+            }
+            return result;
         }
 
 

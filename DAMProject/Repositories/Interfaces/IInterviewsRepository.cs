@@ -16,5 +16,6 @@ namespace Repositories.Interfaces
         Task<Result> AddAsync(Interview interview);
         Task<Result> AddTestToInterviewAsync(TestsToInterviews testsToInterviews);
         Task<Result> UpdateAsync(Guid id, Interview interview);
+        Task<Result<Person>> GetApplicantByIdAsync(Guid id);
     }
 }

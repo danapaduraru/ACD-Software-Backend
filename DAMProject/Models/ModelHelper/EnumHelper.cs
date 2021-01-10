@@ -22,7 +22,7 @@
         {
             Open = 1,
             Soon = 2,
-            Close = 3,
+            Closed = 3,
             Cancelled = 4
         }
 

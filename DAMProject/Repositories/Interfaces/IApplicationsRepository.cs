@@ -16,5 +16,7 @@ namespace Repositories.Interfaces
         Task<Result<Application>> GetByIdAsync(Guid id);
         Task<Result> AddAsync(Application application);
         Task<Result> UpdateAsync(Guid id, Application application);
+        Task<Result<JobPosition>> GetJobPositionByIdAsync(Guid id);
+        Task<Result<Person>> GetApplicantByIdAsync(Guid id);
     }
 }

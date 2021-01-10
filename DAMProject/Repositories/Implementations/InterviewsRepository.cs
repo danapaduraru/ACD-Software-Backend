@@ -124,6 +124,23 @@ namespace Repositories.Implementations
             {
                 return Result.Failure("Exception: " + e.Message);
             }
-}
+        }
+
+        public async Task<Result<Person>> GetApplicantByIdAsync(Guid id)
+        {
+            try
+            {
+                var result = await _context.Persons.SingleOrDefaultAsync(p => p.PersonId == id).ConfigureAwait(true);
+                if (result != default(Person))
+                    return Result.Success(result);
+                return Result.Failure<Person>("Exception: Person not found!");
+
+            }
+            catch (Exception e)
+            {
+                return Result.Failure<Person>("Exception: " + e.Message);
+            }
+        }
+
     }
 }
