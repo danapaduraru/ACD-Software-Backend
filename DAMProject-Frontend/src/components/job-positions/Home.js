@@ -15,7 +15,6 @@ class Home extends Component {
     {
         axios.get(endpoints.JOB_POSITIONS)
             .then (res => {
-                console.log(res);
                 this.setState({ jobPositionsList: res.data});
             });
     }

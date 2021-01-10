@@ -1,17 +1,76 @@
 import { React, Component } from 'react';
 import axios from 'axios';
+import { Button } from 'antd';
 import styled from 'styled-components'
+import endpoints from '../../Constants';
 
 import Header from '../common/Header';
 
-const Interviews = () => {
+class Interviews extends Component {
+
+    state = {
+        interviews: []
+    }
+
+    componentDidMount() {
+        var personId = '4BB2388A-09FD-4236-DDE9-08D8B4BB6E7A';
+        axios.get(endpoints.INTERVIEWS_FOR_PERSON_ID + personId)
+            .then(res => {
+                this.setState({ interviews: [res.data]});
+            });
+    }
+
+    render() {
+        console.log(typeof this.state.interviews);
+        return (
+            <>
+                <Header />
+                <InterviewsHeading>
+                    <h1> Upcoming Interviews </h1>
+                </InterviewsHeading>
+                <InterviewsContainer>
+                <table>
+                    <tr>
+                        <th> Applicant Name </th>
+                        <th> Date </th>
+                        <th> Duration </th>
+                        <th> Details </th>
+                    </tr>
+                    {this.state.interviews.map((interview) =>
+                        <InterviewsTableRow
+                            id={interview.id}
+                            // firstName={interview.firstName}
+                            // lastName={interview.lastName}
+                            firstName='Dana'
+                            lastName='Padurara'
+                            date={interview.date}
+                            duration={interview.durationMinutes}
+                            details={interview.details}
+                        />
+                    )}
+                </table>
+            </InterviewsContainer>
+            </>
+        )
+    }
+}
+
+const InterviewsTableRow = ({ id, firstName, lastName, date, duration, details }) => {
     return (
-        <>
-            <Header />
-            <InterviewsHeading>
-                <h1> Upcoming interviews </h1>
-            </InterviewsHeading>
-        </>
+        <tr>
+            <td>
+                {firstName +  ' ' + lastName}
+            </td>
+            <td>
+                {date}
+            </td>
+            <td>
+                {duration}
+            </td>
+            <td>
+                {details}
+            </td>
+        </tr>
     )
 }
 
@@ -20,6 +79,7 @@ const InterviewsHeading = styled.div`
     padding: 60px;
     background-color: #1B2C41;
     color: white;
+    padding-left: 100px;
 `
 
 const InterviewsContainer = styled.div`
