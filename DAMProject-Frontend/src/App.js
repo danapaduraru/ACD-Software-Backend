@@ -1,4 +1,5 @@
 import { Route } from 'react-router-dom'
+import { CookiesProvider, useCookies } from 'react-cookie'
 
 import './App.css';
 
@@ -9,9 +10,18 @@ import Profile from './components/profile/Profile';
 import Interviews from './components/interviews/Interviews';
 import CreateInterview from './components/interviews/CreateInterview';
 
+
 function App() {
+  const [cookies] = useCookies(['user_id']);
+
+  const isLogged = () => {
+    return cookies['user_id'] !== undefined && cookies['user_id'] !== '';
+  }
+
   return (
     <>
+    {/* <CookiesProvider>
+    </CookiesProvider> */}
       <Route exact path="/" component={Home}/>
       <Route exact path="/login" component={Login}/>
       <Route exact path="/JobPositions/:id" component={JobPosition}/>

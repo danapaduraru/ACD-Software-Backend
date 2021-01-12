@@ -24,7 +24,7 @@ class CreateInterview extends Component {
             "durationMinutes": this.state.duration,
             "durationHours": 0,
             "personId": "4BB2388A-09FD-4236-DDE9-08D8B4BB6E7A",
-            "applicationId": "142EBCBC-BE48-4D8D-08E3-08D8B587A6CE"
+            "applicationId": "69DE0EF4-F29B-412F-FAEE-08D8B70F73EB"
         }
         console.log(requestBody);
         axios.post(endpoints.ADD_INTERVIEW, requestBody)

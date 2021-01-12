@@ -24,18 +24,14 @@ class Home extends Component {
 
     searchOnChange(e) {
         var filter = e.target.value;
-
-        var list = this.state.searchList.filter(function(item) {
+        var list = this.state.searchList.filter(function (item) {
             return item.position.includes(filter);
-          });
-
-        console.log(list);
-
-        if(filter === '') {
+        });
+        if (filter === '') {
             this.setState({ searchList: this.state.jobPositionsList });
         }
         else {
-            this.setState({ searchList: list});
+            this.setState({ searchList: list });
         }
     }
 
@@ -74,28 +70,14 @@ class Home extends Component {
     }
 }
 
-const JobSearchContainer = styled.div`
-    width: 100%;
-    padding: 80px;
-    background-color: #1B2C41;
-    color: white;
-    font-size: 130%;
-`
-
-const SearchContainer = styled.div`
-    width: 60%;
-    margin: 0 auto;
-`
-
-
-var dictStatus = {
+const dictStatus = {
     "1": "Open",
     "2": "Soon",
     "3": "Closed",
     "4": "Cancelled"
 }
 
-var dictStatusColor = {
+const dictStatusColor = {
     "1": "green",
     "2": "blue",
     "3": "red",
@@ -144,4 +126,18 @@ const JobPositionContainer = styled.div`
         color: #0073A8;
     }
 `
+
+const JobSearchContainer = styled.div`
+    width: 100%;
+    padding: 80px;
+    background-color: #1B2C41;
+    color: white;
+    font-size: 130%;
+`
+
+const SearchContainer = styled.div`
+    width: 60%;
+    margin: 0 auto;
+`
+
 export default Home;

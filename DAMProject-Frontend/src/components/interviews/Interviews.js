@@ -16,12 +16,12 @@ class Interviews extends Component {
         var personId = '4BB2388A-09FD-4236-DDE9-08D8B4BB6E7A';
         axios.get(endpoints.INTERVIEWS_FOR_PERSON_ID + personId)
             .then(res => {
+                console.log(res.data);
                 this.setState({ interviews: [res.data]});
             });
     }
 
     render() {
-        console.log(typeof this.state.interviews);
         return (
             <>
                 <Header />
@@ -42,7 +42,7 @@ class Interviews extends Component {
                             // firstName={interview.firstName}
                             // lastName={interview.lastName}
                             firstName='Dana'
-                            lastName='Padurara'
+                            lastName='Paduraru'
                             date={interview.date}
                             duration={interview.durationMinutes}
                             details={interview.details}
@@ -62,7 +62,7 @@ const InterviewsTableRow = ({ id, firstName, lastName, date, duration, details }
                 {firstName +  ' ' + lastName}
             </td>
             <td>
-                {date}
+                {new Date(date).toDateString()}
             </td>
             <td>
                 {duration}

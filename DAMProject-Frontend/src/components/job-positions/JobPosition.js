@@ -10,6 +10,8 @@ import Header from '../common/Header';
 
 class JobPosition extends Component {
 
+    // const [cookies, setCookie] = useCookies(['user_id']);
+
     state = {
         jobPosition: {},
         applications: [],
@@ -77,7 +79,7 @@ class JobPosition extends Component {
                                 <th> Name </th>
                                 <th> Application date </th>
                                 <th> Resume </th>
-                                <th> Change status </th>
+                                <th> Application status </th>
                                 <th> Actions </th>
                             </tr>
                             {this.state.applications.map((app) =>
